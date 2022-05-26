@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.hfad.criminalintent">
+
+    <!-- говорим, что приложение использует камеру -->
+    <uses-feature android:name="android.hardware.camera"
+        android:required="false"/>
+
+    <uses-permission android:name="android.permission.READ_CONTACTS"/>
+
+    <application
+        android:name=".CriminalIntentApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.CriminalIntent">
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <!--
+            объявили FileProvider экземпляром СontentProvider, который связан с конкретным хранилищем (authority)
+
+            хранилище - место, где сохраняются файлы. Строка, выбираемая для authorities должна
+            быть уникальной по всей системе
+
+            атрибут exported='false' запрещает использование провайдера всеми сторонами, которым
+            предоставлено разрешение
+
+            атрибут grantUriPermission предоставляет право записи по URI для этого хранилища
+        -->
+        <provider
+            android:authorities="com.hfad.criminalintent.fileprovider"
+            android:name="androidx.core.content.FileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <!--связали files.xml c FileProvider -->
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/files"/>
+        </provider>
+    </application>
+
+</manifest>

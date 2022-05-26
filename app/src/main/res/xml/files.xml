@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    Этот файл XML по сути гласит: «Назначить crime_photos корневым путем
+    моего приватного хранилища».
+-->
+<paths>
+    <files-path
+        name="crime_photos"
+        path="."/>
+</paths>
